@@ -1,0 +1,53 @@
+<template>
+    <div class="searchlayout">
+        <div class="iconheaderlayout">
+            <lightning-icon icon-name="standard:search" size="small"></lightning-icon>
+            <h1 style="margin-left:8px; font-weight: bold; font-size: 15px;">Product Search</h1>
+        </div>
+        <div class="searchheader">
+            <lightning-button-icon icon-name="utility:jump_to_top" alternative-text="Add filter"
+                onclick={showFilterLayout} class="slds-m-left_xx-small addfilterbutton" title="Add Filter">
+            </lightning-button-icon>
+            <lightning-input label="" value={searchKeyWord} onchange={changeHandler} class="searchinputbox">
+            </lightning-input>
+            <lightning-button variant="brand" label="Search" title="Search" onclick={doSearchClick}
+                class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <template if:true={isShowFilterLayout}>
+            <div class="filterlayout">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                        <lightning-input label="Phone" value={} class="">
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                        <lightning-input label="Phone" value={} class="">
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                        <lightning-input label="Phone" value={} class="">
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item flexibility="auto" padding="around-small" size="6">
+                        <lightning-input label="Phone" value={} class="">
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>
+    </div>
+    <template if:true={isShowSearchResult}>
+        <div class="searchresult">
+            <div class="iconheaderlayout">
+                <lightning-icon icon-name="custom:custom57" size="small"></lightning-icon>
+                <h1 style="margin-left:8px; font-weight: bold; font-size: 15px;">Results {numberOfResult}</h1>
+            </div>
+            <div class="tableHeight">
+                <lightning-datatable key-field="id" data={data} columns={columns}
+                default-sort-direction={defaultSortDirection} sorted-direction={sortDirection} sorted-by={sortedBy}
+                onsort={onHandleSort} enable-infinite-loading="true" onloadmore={loadMoreData} is-loading={tableLoadingState} load-more-offset="5">
+            </lightning-datatable>
+            </div>
+        </div>
+    </template>
+</template>

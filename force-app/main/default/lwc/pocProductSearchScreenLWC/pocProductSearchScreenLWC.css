@@ -1,0 +1,31 @@
+.searchlayout {
+    background: white;
+    padding: 12px;
+    border-radius: 5px;
+}
+.searchheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchinputbox {
+    margin: 0px 10px 15px 10px;
+    width: 83vw;
+}
+.addfilterbutton {
+    margin-top: 6px;
+}
+.searchresult{
+    background: white;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 2vh;
+    height: 38vh;
+}
+.iconheaderlayout {
+    display: flex;
+    margin-bottom:14px; 
+}
+.tableHeight {
+    height: 30vh;
+}

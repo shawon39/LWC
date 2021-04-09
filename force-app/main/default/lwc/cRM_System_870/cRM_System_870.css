@@ -1,0 +1,11 @@
+.outputText {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px 30px;
+}
+
+.outputTextItem {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 0px 30px;
+}
