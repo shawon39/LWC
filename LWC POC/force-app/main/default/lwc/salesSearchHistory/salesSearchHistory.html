@@ -1,0 +1,53 @@
+<template>
+    <div class="searchFilterClass">
+        <div class="searchIcon">
+            <lightning-icon size="small" icon-name="standard:search" alternative-text="Search" title="Search"></lightning-icon> <span>Search</span>
+        </div>
+        <div class="searchScreen">
+            <div class="actionButton">
+                <lightning-button-icon size="small" icon-name="utility:jump_to_top" alternative-text="jump_to_top" title="jump_to_top" onclick={handleToggle}></lightning-button-icon>
+                <lightning-input type="text" class="freeInput" name="FreeInput" ></lightning-input>
+                <lightning-button variant="brand" label="Search" class="searchButton" onclick={handleSearch}></lightning-button>
+            </div>
+            <template if:true={buttonClicked}>
+                <div class="filterCriteria">
+                    <lightning-input type="text" class="myInput" name="Name" label="Name"></lightning-input>
+                    <lightning-input type="text" class="myInput" name="NumberOfEmployees" label="Employees" ></lightning-input>
+                    <lightning-input type="text" class="myInput" name="AnnualRevenue" label="Annual Revenue" ></lightning-input>
+                    <lightning-input type="text" class="myInput" name="Industry" label="Industry" ></lightning-input>
+                    <lightning-input type="text" class="myInput" name="Phone" label="Phone" ></lightning-input>
+                    <lightning-input type="text" class="myInput" name="Type" label="Type" ></lightning-input>
+                    <div class="dateFields">
+                        <lightning-input type="date" class="myDateInput" name="SLAExpirationDate" label="SLA Expiration Date"></lightning-input>
+                        <lightning-input type="date" class="myDateInput" name="SLAExpirationDate" label="SLA Expiration Date"></lightning-input>
+                    </div>
+                    <lightning-combobox name="Rating" label="Rating" value={value}
+                        options={ratingValues.data.values} onchange={handleChange}>
+                    </lightning-combobox>
+                    <lightning-checkbox-group name="Checkbox Group"
+                              label="Checkbox Group"
+                              options={ratingValues.data.values}
+                              value={value}
+                              onchange={handleChange2}></lightning-checkbox-group>
+                    <p>Selected Values are: {selectedValues}</p>
+                </div>
+            </template>
+        </div>
+    </div>
+    <template if:true={isShowSearchResult}>
+        <div class="resultScreen">
+            <div class="resultIcon">
+                <lightning-icon size="small" icon-name="custom:custom57" alternative-text="Result" title="Result"></lightning-icon> <span>Result ({dataLength})</span>
+            </div>
+            <div style="height: 300px" class="datatable">
+                <lightning-datatable
+                    data={accounts} columns={columns} key-field="id"
+                    sorted-by={sortBy} sorted-direction={sortDirection} onsort={doSorting}
+                    hide-checkbox-column show-row-number-column
+                    enable-infinite-loading onloadmore={loadMoreData}>
+                </lightning-datatable>
+            </div>
+            {loadMoreStatus}
+        </div>
+    </template>
+</template>

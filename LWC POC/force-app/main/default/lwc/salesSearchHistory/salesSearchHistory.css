@@ -1,0 +1,48 @@
+.searchFilterClass,
+.resultScreen {
+  background: #fff;
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.actionButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.freeInput {
+    margin-top: -20px;
+    width: calc(100% - 120px);
+}
+
+.filterCriteria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0px 30px;
+}
+
+.dateFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0px 30px;
+}
+
+.resultIcon {
+  margin-bottom: 10px;
+}
+
+.searchIcon span {
+  margin-left: 10px;
+}
+
+.resultIcon span {
+  margin-left: 10px;
+}
+
+.resultScreen {
+  margin-top: 10px;
+}
+
+.searchScreen {
+  margin-top: 10px;
+}
