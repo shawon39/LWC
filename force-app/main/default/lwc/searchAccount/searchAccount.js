@@ -1,5 +1,4 @@
-import { LightningElement, track, wire, api } from 'lwc';
-import getAccounts from '@salesforce/apex/AccountController.getAccounts';
+import { LightningElement, track, api, wire } from 'lwc';
 import filterAccounts from '@salesforce/apex/AccountController.filterAccounts';
 import getTotalNumberOfRows from '@salesforce/apex/AccountController.getTotalNumberOfRows';
 
@@ -12,12 +11,7 @@ const columns = [
     {label: 'Type', fieldName: 'Type', type: 'picklist',  sortable: true}
 ];
 
-import { getPicklistValues } from 'lightning/uiObjectInfoApi';
-import Rating from '@salesforce/schema/Account.Rating';
-import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-import Account_OBJECT from '@salesforce/schema/Account';
-
-export default class SalesSearchHistory extends LightningElement {
+export default class SearchAccount extends LightningElement {
     @track accounts = [];
     columns = columns;
     @track sortBy;
@@ -25,7 +19,6 @@ export default class SalesSearchHistory extends LightningElement {
     @track dataLength;
     @track buttonClicked;
     @track isShowSearchResult;
-    firstTime = true;
 
     filterValues = [];
     @track loadMoreStatus;
@@ -34,13 +27,6 @@ export default class SalesSearchHistory extends LightningElement {
     @track rowLimit = 50;
     tableElement;
 
-    value = [];
-
-    handleChange2(e) {
-        this.value = e.detail.value;
-        console.log(this.value);
-    }
-
     @wire(getTotalNumberOfRows)
     getAccountCount ({error, data}) {
         if (error) {
@@ -48,16 +34,6 @@ export default class SalesSearchHistory extends LightningElement {
         } else if (data) {
             this.totalNumberOfRows = data;
         }
-    }
-
-    @wire(getObjectInfo, { objectApiName: Account_OBJECT }) accountInfo;
-
-    @wire(getPicklistValues, {
-            recordTypeId: '$accountInfo.data.defaultRecordTypeId',
-            fieldApiName: Rating }) ratingValues;
-
-    handleChange(event) {
-        console.log(event.target.value);
     }
 
     loadMoreData(event) {
@@ -75,8 +51,6 @@ export default class SalesSearchHistory extends LightningElement {
 
     handleToggle() {
         this.buttonClicked = !this.buttonClicked;
-        // const div = this.template.querySelector('div.filterCriteria');
-        // this.buttonClicked ? div.className = "filterCriteria slds-show" : div.className = "filterCriteria slds-hide";
     }
 
     handleSearch() {
@@ -101,16 +75,6 @@ export default class SalesSearchHistory extends LightningElement {
             res.forEach(ele => {
                 ele.format = ele.Industry == 'Energy' ? 'slds-theme_error slds-text-color_default' : '';
             });
-
-            // let tempConList = [];
-            // res.forEach((record) => {
-            //     let tempConRec = Object.assign({}, record);
-            //     if(tempConRec.Account__c) {
-            //         tempConRec.accName = tempConRec.Account__r.Name;
-            //         tempConRec.accNameLink = '/' + tempConRec.Account__c;
-            //     }
-            //     tempConList.push(tempConRec);
-            // });
 
             this.accounts = this.accounts.concat(res);
             this.dataLength = this.accounts.length;
@@ -174,4 +138,5 @@ export default class SalesSearchHistory extends LightningElement {
         });
         this.accounts = parseData;
     }
- }
+
+}

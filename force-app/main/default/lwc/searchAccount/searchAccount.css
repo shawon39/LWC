@@ -1,8 +1,12 @@
-.searchFilterClass,
+.searchAccount,
 .resultScreen {
   background: #fff;
   padding: 12px;
   border-radius: 5px;
+}
+
+.searchScreen {
+    margin-top: 10px;
 }
 
 .actionButton {
@@ -13,18 +17,6 @@
 .freeInput {
     margin-top: -20px;
     width: calc(100% - 120px);
-}
-
-.filterCriteria {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0px 30px;
-}
-
-.dateFields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0px 30px;
 }
 
 .resultIcon {
@@ -41,16 +33,4 @@
 
 .resultScreen {
   margin-top: 10px;
-}
-
-.searchScreen {
-  margin-top: 10px;
-}
-
-.redBackground {
-  background-color: red;
-}
-
-.greenBackground {
-  background-color: green;
 }
